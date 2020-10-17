@@ -5,6 +5,8 @@ Activitats per treballar micropython a 3r d'ESO
 
 Les activitats pels alumnes es troben a la carpeta **Estació Meteorològica**
 
+Cal carregar la llibreria **D1mini.py** per poder accedir a les funcions del laboratori virtual
+
 # Instal·lació
 
 En descomprimir aquest repositori trobareu una carpeta principal amb el programa *labvir.py* que caldrà executar amb
