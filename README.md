@@ -17,6 +17,19 @@ Prèviament caldrà instal·lar un entorn de desenvolupament Python (aquí teniu
 ## GNU/Linux
 
 ~~~
-sudo apt install thonny
+sudo apt install python3 python3-pip python3-tk thonny
 sudo pip3 install Flask
 ~~~
+
+## Windows
+
+Si encara no tens python instal·lat, baixa'l i instal·la'l des de la seva web https://www.python.org/downloads/windows/
+
+Cal baixar i instal·lar *thonny* des de la seva web https://thonny.org/
+
+Ara et caldrà instal·lar *Flask* des d'un terminal
+
+~~~
+sudo pip3 install Flask
+~~~
+
