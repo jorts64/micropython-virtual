@@ -4,4 +4,4 @@ A la carpeta *lib* trobareu les llibreries que cal carregar a l'entorn micropyth
 
 **Al shield RGB cal canviar la connexió: utilitzem el pin D8** 
 
-![](oled-leds-png)
+![](oled-leds.png)
