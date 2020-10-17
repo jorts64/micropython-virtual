@@ -35,3 +35,6 @@ Ara et caldrà instal·lar *Flask* des d'un terminal
 sudo pip3 install Flask
 ~~~
 
+# Agraiments 
+
+Aquesta tasca ha estat possible gràcies a la feina prèvia realitzada amb Alejandro Pérez, Borja Diaz i Jose Toro [microPython-amb-D1-mini](https://github.com/jorts64/microPython-amb-D1-mini).
