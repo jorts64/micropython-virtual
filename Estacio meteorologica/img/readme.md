@@ -1,0 +1,1 @@
+# Imatges dels mòduls
