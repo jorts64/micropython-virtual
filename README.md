@@ -12,6 +12,8 @@ Cal carregar la llibreria **D1mini.py** per poder accedir a les funcions del lab
 En descomprimir aquest repositori trobareu una carpeta principal amb el programa *labvir.py* que caldrà executar amb
 `python3 labvir.py` des d'un terminal a aquesta carpeta. El laboratori el trobareu a http://localhost:5000/
 
+![](labvir.png)
+
 Prèviament caldrà instal·lar un entorn de desenvolupament Python (aquí teniu instruccions per *Thonny*) i la biblioteca *Flask*
 
 ## GNU/Linux
