@@ -4,4 +4,6 @@ A la carpeta *lib* trobareu les llibreries que cal carregar a l'entorn micropyth
 
 **Al shield RGB cal canviar la connexió: utilitzem el pin D8** 
 
+A la carpeta *firmware* trobareu el micropyton per al D1 mini
+
 ![](oled-leds.png)
