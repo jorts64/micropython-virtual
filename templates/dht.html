@@ -1,0 +1,70 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/w3.css">
+<script src="/static/lib/w3.js"></script>
+<body class="w3-container">
+<img src="/static/dht.jpg" width="320" height="320"><br>
+<table width=100%>
+<tr><td id="valorT" align="center"> N/A</td><td id="valorH" align="center"> N/A</td></tr>
+<tr><td align="center">
+    <button onclick="dec_T()" class="w3-button w3-blue">DEC T</button>
+    <button onclick="inc_T()" class="w3-button w3-red">INC T</button>
+</td><td align="center">
+    <button onclick="dec_H()" class="w3-button w3-orange">DEC H</button>
+    <button onclick="inc_H()" class="w3-button w3-aqua">INC H</button>
+</td></tr>
+</table>
+<script>
+  function loadT() {
+    var xhttp = new XMLHttpRequest();
+    var temp = 0;
+    xhttp.open('GET', 'dhtTread', false);
+    xhttp.send();
+    temp = parseFloat(xhttp.responseText);
+    return (temp);
+    }
+    
+  function loadH() {
+    var xhttp = new XMLHttpRequest();
+    var temp = 0;
+    xhttp.open('GET', 'dhtHread', false);
+    xhttp.send();
+    temp = parseFloat(xhttp.responseText);
+    return (temp);
+    }
+    
+  var myVar = setInterval(myTimer, 1000);
+  function myTimer() {
+    var t= loadT();
+    document.getElementById('valorT').innerHTML = t+" &deg;C";
+    var h= loadH();
+    document.getElementById('valorH').innerHTML = h+" % HR";
+    }
+
+  function dec_T() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'dhtTdec', true);
+    xhttp.send();
+    }
+    
+  function inc_T() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'dhtTinc', true);
+    xhttp.send();
+    }
+    
+  function dec_H() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'dhtHdec', true);
+    xhttp.send();
+    }
+    
+  function inc_H() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'dhtHinc', true);
+    xhttp.send();
+    }
+    
+</script>
+</body>
+</html>

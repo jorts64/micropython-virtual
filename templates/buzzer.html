@@ -1,0 +1,70 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/w3.css">
+<script src="/static/w3.js"></script>
+<body class="w3-container">
+<img id="switch" src="/static/buzzer.jpg" width="320" height="320"><br>
+
+<audio id="myVideo" controls>
+  <source id="mp3_src" src="/static/do.mp3" type="audio/mp3">
+  Your browser does not support HTML5 video.
+</audio>
+
+<p>
+  <button onclick="myFunction('do')" type="button" class="w3-button w3-blue w3-tiny">Do</button>
+  <button onclick="myFunction('re')" type="button" class="w3-button w3-blue w3-tiny">Re</button>
+  <button onclick="myFunction('mi')" type="button" class="w3-button w3-blue w3-tiny">Mi</button>
+  <button onclick="myFunction('fa')" type="button" class="w3-button w3-blue w3-tiny">Fa</button>
+  <button onclick="myFunction('sol')" type="button" class="w3-button w3-blue w3-tiny">Sol</button>
+  <button onclick="myFunction('la')" type="button" class="w3-button w3-blue w3-tiny">La</button>
+  <button onclick="myFunction('si')" type="button" class="w3-button w3-blue w3-tiny">Si</button>
+</p>
+<script>
+  function loadBuzzer() {
+    var xhttp = new XMLHttpRequest();
+    var temp = 0;
+    xhttp.open('GET', 'buzzerread', false);
+    xhttp.send();
+    temp = xhttp.responseText;
+    return (temp);
+    }
+
+  function clearBuzzer() {
+    var xhttp = new XMLHttpRequest();
+    var temp = 0;
+    xhttp.open('GET', 'buzzerwrite/off', false);
+    xhttp.send();
+    temp = xhttp.responseText;
+    return (temp);
+    }
+
+  var myVar = setInterval(myTimer, 1000);
+  function myTimer() {
+    var t= loadBuzzer();
+    switch (t) {
+      case "do":
+      case "re":
+      case "mi":
+      case "fa":
+      case "sol":
+      case "la":
+      case "si":
+        myFunction(t);
+        document.getElementById('switch').src = '/static/buzzer-on.jpg';
+        break;
+      default:
+        document.getElementById('switch').src = '/static/buzzer.jpg';
+      }
+      clearBuzzer();
+    }
+
+  function myFunction(nota) { 
+    document.getElementById("mp3_src").src = "static/"+nota+".mp3";
+    document.getElementById("myVideo").load();
+    document.getElementById("myVideo").play();
+  }
+
+
+</script>
+</body>
+</html>

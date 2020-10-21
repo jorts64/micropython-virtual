@@ -1,0 +1,147 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/w3.css">
+<script src="/static/lib/w3.js"></script>
+<body class="w3-container">
+<img id="scream" width="0" height="0" src="/static/rgb.jpg" alt="The Scream">
+<canvas id="myCanvas" width="350" height="350" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<form name="myForm" onsubmit="return escriu()" class="w3-container">
+  <label for="led">led:</label>
+
+  <select id="led" name="led">
+    <option value="0">centre</option>
+    <option value="1">dalt</option>
+    <option value="2">dreta-dalt</option>
+    <option value="3">dreta-baix</option>
+    <option value="4">baix</option>
+    <option value="5">esquerra-baix</option>
+    <option value="6">esquerra-dalt</option>
+  </select> 
+
+
+  <label for="color">color:</label>
+
+  <select id="color" name="color">
+    <option value="off">apagat</option>
+    <option value="red">vermell</option>
+    <option value="yellow">groc</option>
+    <option value="green">verd</option>
+    <option value="cyan">cyan</option>
+    <option value="blue">blau</option>
+    <option value="magenta">magenta</option>
+    <option value="white">blanc</option>
+  </select> <br><br>
+  <input type="submit" value="Aplica" class="w3-button w3-block w3-teal">
+</form> 
+<p>
+  <button onclick="mostrari()" class="w3-button w3-orange w3-circle">Exemple<br>colors</button>
+  <button onclick="esborra()" class="w3-button w3-red w3-right w3-circle">Apaga<br>tots</button>
+</p>
+
+<script>
+  var led = ["off", "off", "off", "off", "off", "off", "off"];
+  var coordx = [162, 162, 223, 222, 164, 104, 103];
+  var coordy = [140,  70, 105, 175, 208, 173, 105];
+
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("scream");
+    ctx.drawImage(img, 1, 1);
+}
+
+  function loadSwitch() {
+    var xmlhttp = new XMLHttpRequest();
+    var i;
+    xmlhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         myObj = JSON.parse(this.responseText);
+         led[0] = myObj.led0;
+         led[1] = myObj.led1;
+         led[2] = myObj.led2;
+         led[3] = myObj.led3;
+         led[4] = myObj.led4;
+         led[5] = myObj.led5;
+         led[6] = myObj.led6;
+         }
+      };
+      xmlhttp.open("GET", "rgbread", true);
+      xmlhttp.send();
+      pinta();
+      return;
+      }
+    
+  var myVar = setInterval(myTimer, 400);
+
+  function myTimer() {
+    loadSwitch();
+    }
+
+  function esborra() {
+    var i;
+    for (i = 0; i < 7; i++) {
+      led[i] = "off";
+      }
+    array2json();
+    return;
+    }
+
+  function mostrari() {
+    var i;
+    led[0] = "white";
+    led[1] = "red";
+    led[2] = "yellow";
+    led[3] = "green";
+    led[4] = "cyan";
+    led[5] = "blue";
+    led[6] = "magenta";
+    array2json();
+    return;
+    }
+
+  function pinta() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("scream");
+    ctx.drawImage(img, 1, 1);
+    var i;
+    var x;
+    var y;
+    for (i = 0; i < 7; i++) {
+      if (led[i] != "off") {
+        ctx.beginPath();
+        ctx.arc(coordx[i], coordy[i], 17, 0,2*Math.PI);
+        ctx.fillStyle = led[i];
+        ctx.fill();
+        }
+      }
+    return;
+    }
+  
+  function escriu() {
+    var nled = document.forms["myForm"]["led"].value;
+    var noucolor = document.forms["myForm"]["color"].value;
+    led[nled]=noucolor;
+
+    array2json();
+
+    return false;
+    }
+    
+  function array2json() {
+	var obj = {"led0": led[0],"led1": led[1],"led2": led[2],"led3": led[3],"led4": led[4],"led5": led[5],"led6":led[6]};
+	var myJSON = JSON.stringify(obj);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'rgbwrite/'+myJSON, true);
+    xhttp.send();
+    
+    return;
+    }
+	
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href= "/static/w3.css">
+<script src= "/static/w3.js"></script>
+<body class="w3-container">
+<img id="switch" src="/static/switch.jpg" width="320" height="320"><br>
+<p>
+    <button onclick="engega()" class="w3-button w3-blue">ON</button>
+    <button onclick="apaga()" class="w3-button w3-red">OFF</button>
+</p>
+<script>
+  function loadSwitch() {
+    var xhttp = new XMLHttpRequest();
+    var temp = 0;
+    xhttp.open('GET', 'switchread', false);
+    xhttp.send();
+    temp = parseFloat(xhttp.responseText);
+    return (temp);
+    }
+    
+  var myVar = setInterval(myTimer, 1000);
+  function myTimer() {
+    var t= loadSwitch();
+    if (t==1) {
+       document.getElementById('switch').src = '/static/switch-on.jpg';
+       }
+    else {
+       document.getElementById('switch').src = '/static/switch.jpg';
+       }
+    }
+
+  function engega() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'on', true);
+    xhttp.send();
+    }
+
+  
+  function apaga() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'off', true);
+    xhttp.send();
+    }
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/w3.css">
+<script src="/static/lib/w3.js"></script>
+<body class="w3-container">
+<img id="scream" width="0" height="0" src="/static/oled.jpg" alt="The Scream">
+<canvas id="myCanvas" width="350" height="350" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<form name="myForm" onsubmit="return escriu()" class="w3-container">
+  <label for="xcoord">x:</label>
+  <input type="text" id="xcoord" name="xcoord" size=2 value="0">
+  <label for="ycoord">y:</label>
+  <input type="text" id="ycoord" name="ycoord" size=2 value="0">
+  <label for="text">Text:</label>
+  <input type="text" id="text" name="text" size=8 value="Hello"><br><br>
+  <input type="submit" value="Escriu a pantalla" class="w3-button w3-block w3-teal">
+</form> 
+<p>
+  <button onclick="esborra()" class="w3-button w3-red w3-right w3-circle">Esborra<br> pantalla</button>
+</p>
+
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("scream");
+    ctx.drawImage(img, 1, 1);
+    ctx.fillStyle = "black";
+    ctx.fillRect(80, 26, 144, 144); 
+}
+
+  function loadSwitch() {
+    var x = 0;
+    var y = 0;
+    var text  =""; 
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         myObj = JSON.parse(this.responseText);
+         x = myObj.x;
+         y = myObj.y;
+         text = myObj.text;
+         if (x == -2) {
+           esborra();
+           return;
+         }
+         if (x != -1) {
+             var canvas = document.getElementById("myCanvas");
+             var ctx = canvas.getContext("2d");
+             ctx.fillStyle = "white";
+             ctx.font = "30px Monospace";
+             ctx.fillText(text, 81+2.25*x, 50+3*y); 
+             ctx.stroke();
+             var obj = {"x": -1, "y": -1, "text": "VOID"};
+	         var myJSON = JSON.stringify(obj);
+             var xhttp = new XMLHttpRequest();
+             xhttp.open('GET', 'oledwrite/'+myJSON, true);
+             xhttp.send();
+           }
+         }
+    };
+    xmlhttp.open("GET", "oledread", true);
+    xmlhttp.send();
+    return;
+    }
+    
+  var myVar = setInterval(myTimer, 400);
+
+  function myTimer() {
+    loadSwitch();
+    }
+
+  function esborra() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("scream");
+//    ctx.drawImage(img, 1, 1);
+//    ctx.font = "30px Monospace";
+    ctx.fillStyle = "black";
+    ctx.fillRect(80, 26, 144, 144); 
+//    ctx.fillStyle = "white";
+    return;
+    }
+  
+  function escriu() {
+    var x = document.forms["myForm"]["xcoord"].value;
+    var y = document.forms["myForm"]["ycoord"].value;
+    var text = document.forms["myForm"]["text"].value;
+    var obj = {"x": x, "y": y, "text": text};
+	var myJSON = JSON.stringify(obj);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('GET', 'oledwrite/'+myJSON, true);
+    xhttp.send();
+    return false;
+    }
+    
+
+
+  
+</script>
+</body>
+</html>
