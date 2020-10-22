@@ -38,4 +38,4 @@ sudo pip3 install Flask
 
 # Agraïments 
 
-Aquesta tasca ha estat possible gràcies a la feina prèvia realitzada amb Alejandro Pérez, Borja Diaz i Jose Toro [microPython-amb-D1-mini](https://github.com/jorts64/microPython-amb-D1-mini). Gràcies de tot cor!
+Aquesta tasca ha estat possible gràcies a la feina prèvia realitzada amb Alejandro Pérez, Borja Diaz i Jose Toro [microPython-amb-D1-mini](https://github.com/jorts64/microPython-amb-D1-mini), i especialment a la meva filla Ingrid, gràcies a la qual recentment vaig descobrir la llibreria *Flask*. Gràcies de tot cor!
