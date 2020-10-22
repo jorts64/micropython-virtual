@@ -19,6 +19,7 @@ Prèviament caldrà instal·lar un entorn de desenvolupament Python (aquí teniu
 ## GNU/Linux
 
 ~~~
+sudo apt update
 sudo apt install python3 python3-pip python3-tk thonny
 sudo pip3 install Flask
 ~~~
