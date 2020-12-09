@@ -33,7 +33,7 @@ Cal baixar i instal·lar *thonny* des de la seva web https://thonny.org/
 Ara et caldrà instal·lar *Flask* des d'un terminal
 
 ~~~
-sudo pip3 install Flask
+py -m pip install Flask
 ~~~
 
 # Agraïments 
