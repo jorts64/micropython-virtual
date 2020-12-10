@@ -30,10 +30,12 @@ Si encara no tens python instal·lat, baixa'l i instal·la'l des de la seva web 
 
 Cal baixar i instal·lar *thonny* des de la seva web https://thonny.org/
 
-Ara et caldrà instal·lar *Flask* des d'un terminal
+Cal configurar *thonny* per fer servir el python que hem instal·lat. Per això anem a *Herramientas -> Opciones -> Intérprete* i al desplegable *¿Que intérprete o dispositivo debe usar Thonny para ejecutar tu código* seleccionem l'opció *Intérprete de Python 3 alternativo o entorno virtual* i a *Detalles* seleccionem del desplegable la ubicació del pythom que hem instal·lat. 
 
+Ara et caldrà instal·lar *Flask* des d'un terminal
+ 
 ~~~
-py -m pip install Flask
+py -m pip install Flask requests
 ~~~
 
 # Agraïments 
